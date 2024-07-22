@@ -1,6 +1,6 @@
 This is the empty folder in which spec files are added.
 
-
+```ts
  subcommands: [
             {
               icon: "✨",
@@ -49,3 +49,5 @@ This is the empty folder in which spec files are added.
               description: "Snapshot Güncelleniyorsa ",
             },
           ],
+
+```
