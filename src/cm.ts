@@ -38,14 +38,22 @@ const completionSpec: Fig.Spec = {
     {
       icon: "🔀",
       name: "merge",
-      insertValue: "\b\b\bgit commit -m ':twisted_rightwards_arrows: Merge development branch'",
+      insertValue:
+        "\b\b\bgit commit -m ':twisted_rightwards_arrows: Merge development branch'",
       description: "Merge Development ",
     },
     {
       icon: "📸",
       name: "snapshot",
-      insertValue: "\b\b\bgit commit -m ':camera_with_flash: Snapshot lar güncellendi'",
+      insertValue:
+        "\b\b\bgit commit -m ':camera_with_flash: Snapshot lar güncellendi'",
       description: "Snapshot Güncelleniyorsa ",
+    },
+    {
+      icon: "♻️",
+      name: "recycle",
+      insertValue: "\b\b\bgit commit -m ':recycle: {cursor}'",
+      description: "Refactor edilirken",
     },
   ],
 };

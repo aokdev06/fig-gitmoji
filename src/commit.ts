@@ -47,6 +47,12 @@ const completionSpec: Fig.Spec = {
       insertValue: "\b\b\b\b\b\b\bgit commit -m ':camera_with_flash: Snapshot lar güncellendi'",
       description: "Snapshot Güncelleniyorsa ",
     },
+    {
+      icon: "♻️",
+      name: "recycle",
+      insertValue: "\b\b\b\b\b\b\bgit commit -m ':recycle: {cursor}'",
+      description: "Refactor edilirken",
+    },
   ],
 };
 export default completionSpec;

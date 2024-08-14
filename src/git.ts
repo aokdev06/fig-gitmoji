@@ -4004,6 +4004,12 @@ const gitmoji: Fig.Subcommand[] = [
     insertValue: "':camera_with_flash: Snapshot lar güncellendi'",
     description: "Snapshot Güncelleniyorsa ",
   },
+  {
+    icon: "♻️",
+    name: "recycle",
+    insertValue: "':recycle: {cursor}'",
+    description: "Refactor edilirken",
+  },
 ];
 /** Git finds these commands as "git-<name>" on your PATH */
 const optionalCommands: Record<string, Omit<Fig.Subcommand, "name">> = {

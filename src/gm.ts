@@ -47,6 +47,12 @@ const completionSpec: Fig.Spec = {
       insertValue: "\b\b\b:camera_with_flash: ",
       description: "Snapshot Güncelleniyorsa ",
     },
+    {
+      icon: "♻️",
+      name: "recycle",
+      insertValue: "\b\b\b :recycle: ",
+      description: "Refactor edilirken",
+    },
   ],
 };
 export default completionSpec;
