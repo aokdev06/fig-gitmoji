@@ -1,4 +1,5 @@
 import { ai } from "@fig/autocomplete-generators";
+import { gitmoji } from "./gitmoji";
 
 const filterMessages = (out: string): string => {
   return out.startsWith("warning:") || out.startsWith("error:")
@@ -3959,58 +3960,6 @@ const headSuggestions = [
   },
 ];
 
-const gitmoji: Fig.Subcommand[] = [
-  {
-    icon: "✨",
-    name: "sparkles",
-    insertValue: "':sparkles: {cursor}'",
-    description: "Yeni bir özellik ekleniyorsa",
-  },
-  {
-    icon: "🎨",
-    name: "art",
-    insertValue: "':art: {cursor}'",
-    description: "Mevcutta olan kod bloğu güncelleniyor ya da geliştiriliyorsa",
-  },
-  {
-    icon: "🐛",
-    name: "bug",
-    insertValue: "':bug: {cursor}'",
-    description: "Yapılan değişiklik bir Bug'ı içeriyorsa",
-  },
-  {
-    icon: "✅",
-    name: "test",
-    insertValue: "':white_check_mark: {cursor}'",
-    description:
-      "Yeni bir test yazınca, ya da mevcut testi güncelleyince kullanılır",
-  },
-  {
-    icon: "🚑️",
-    name: "ambulance",
-    insertValue: "':ambulance: {cursor}'",
-    description:
-      "Critical hotfix - Canlıya acilen çıkılması gereken bir bug varsa",
-  },
-  {
-    icon: "🔀",
-    name: "merge",
-    insertValue: "':twisted_rightwards_arrows: Merge development branch'",
-    description: "Merge Development ",
-  },
-  {
-    icon: "📸",
-    name: "snapshot",
-    insertValue: "':camera_with_flash: Snapshot lar güncellendi'",
-    description: "Snapshot Güncelleniyorsa ",
-  },
-  {
-    icon: "♻️",
-    name: "recycle",
-    insertValue: "':recycle: {cursor}'",
-    description: "Refactor edilirken",
-  },
-];
 /** Git finds these commands as "git-<name>" on your PATH */
 const optionalCommands: Record<string, Omit<Fig.Subcommand, "name">> = {
   open: {
@@ -4448,7 +4397,24 @@ const completionSpec: Fig.Spec = {
           name: ["-m", "--message"],
           // insertValue: "-m '{cursor}'",
           description: "Use the given message as the commit message",
-          subcommands: gitmoji,
+          subcommands: gitmoji.map((gitmoji) => {
+            let autoEndText = false;
+            switch (gitmoji.name) {
+              case "merge":
+              case "snapshot":
+                autoEndText = true;
+                break;
+            }
+
+            return {
+              name: gitmoji.name,
+              icon: gitmoji.icon,
+              description: gitmoji.description,
+              insertValue: `'${gitmoji.insertValue}${
+                !autoEndText ? ` {cursor}'` : "'"
+              }`,
+            };
+          }),
         },
       ],
     },
@@ -6611,7 +6577,6 @@ const completionSpec: Fig.Spec = {
           name: "push", // TODO: support for no subcommand is missing
           description:
             "Save your local modifications to a new stash entry and roll them back to HEAD",
-          insertValue: "push {cursor}",
           options: [
             {
               name: ["-p", "--patch"],
@@ -6656,7 +6621,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "show",
           description: "Show the changes recorded in the stash entry as a diff",
-          insertValue: "show {cursor}",
           args: {
             name: "stash",
             isOptional: true,
@@ -6667,7 +6631,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "save",
           description: "Temporarily stores all the modified tracked files",
-          insertValue: "save {cursor}",
           options: [
             {
               name: ["-p", "--patch"],
@@ -6722,12 +6685,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "Lists all stashed changesets",
-          insertValue: "list {cursor}",
         },
         {
           name: "drop",
           description: "Discards the most recently stashed changeset",
-          insertValue: "drop {cursor}",
           options: [
             {
               name: ["-q", "--quiet"],
@@ -6787,16 +6748,16 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "create",
-          description: "Creates a stash with the message <msg>",
-          insertValue: "create {cursor}",
+          description: "Creates a stash entry",
           args: {
             name: "message",
+            isOptional: true,
           },
         },
         {
           name: "store",
           description:
-            "Store a given stash in the stash ref., updating the staft reflog",
+            "Store a given stash in the stash ref, updating the stash reflog",
           options: [
             {
               name: ["-m", "--message"],
@@ -6984,7 +6945,7 @@ const completionSpec: Fig.Spec = {
           description:
             "Create a shallow clone with a history truncated to the specified number of commits. Implies --single-branch unless --no-single-branch is given to fetch the histories near the tips of all branches. If you want to clone submodules shallowly, also pass --shallow-submodules",
           args: {
-            name: "date",
+            name: "depth",
           },
         },
         {

@@ -1,0 +1,180 @@
+export const gitmoji: Fig.Subcommand[] = [
+  {
+    icon: "✨",
+    name: "sparkles",
+    insertValue: ":sparkles:",
+    description: "Yeni bir özellik ekleniyorsa",
+  },
+  {
+    icon: "🎨",
+    name: "art",
+    insertValue: ":art:",
+    description: "Mevcutta olan kod bloğu güncelleniyor ya da geliştiriliyorsa",
+  },
+  {
+    icon: "🐛",
+    name: "bug",
+    insertValue: ":bug:",
+    description: "Yapılan değişiklik bir Bug'ı içeriyorsa",
+  },
+  {
+    icon: "✅",
+    name: "test",
+    insertValue: ":white_check_mark:",
+    description:
+      "Yeni bir test yazınca, ya da mevcut testi güncelleyince kullanılır",
+  },
+  {
+    icon: "🚑️",
+    name: "ambulance",
+    insertValue: ":ambulance:",
+    description:
+      "Critical hotfix - Canlıya acilen çıkılması gereken bir bug varsa",
+  },
+  {
+    icon: "🔀",
+    name: "merge",
+    insertValue:
+      ":twisted_rightwards_arrows: Merge development branch",
+    description: "Merge Development ",
+  },
+  {
+    icon: "📸",
+    name: "snapshot",
+    insertValue:
+      ":camera_with_flash: Snapshot lar güncellendi",
+    description: "Snapshot Güncelleniyorsa ",
+  },
+  {
+    icon: "♻️",
+    name: "recycle",
+    insertValue: ":recycle:",
+    description: "Refactor edilirken",
+  },
+  {
+    icon: "🔖",
+    name: "bookmark",
+    insertValue: ":bookmark:",
+    description: "Release / Version tags.",
+  },
+  {
+    icon: "🔧",
+    name: "wrench",
+    insertValue: ":wrench:",
+    description: "Add or update configuration files.",
+  },
+  {
+    icon: "📝",
+    name: "memo",
+    insertValue: ":memo:",
+    description: "Add or update documentation.",
+  },
+  {
+    icon: "🚀",
+    name: "rocket",
+    insertValue: ":rocket:",
+    description: "Deploy stuff.",
+  },
+  {
+    icon: "📦️",
+    name: "package",
+    insertValue: ":package:",
+    description: "Add or update compiled files or packages.",
+  },
+  {
+    icon: "🔨",
+    name: "hammer",
+    insertValue: ":hammer:",
+    description: "Add or update development scripts.",
+  },
+  {
+    icon: "👽️",
+    name: "alien",
+    insertValue: ":alien:",
+    description: "Update code due to external API changes.",
+  },
+  {
+    icon: "⬇️",
+    name: "arrow_down",
+    insertValue: ":arrow_down:",
+    description: "Downgrade dependencies.",
+  },
+  {
+    icon: "⬆️",
+    name: "arrow_up",
+    insertValue: ":arrow_up:",
+    description: "Upgrade dependencies.",
+  },
+  {
+    icon: "📌",
+    name: "pushpin",
+    insertValue: ":pushpin:",
+    description: "Pin dependencies to specific versions.",
+  },
+  {
+    icon: "➕",
+    name: "heavy_plus_sign",
+    insertValue: ":heavy_plus_sign:",
+    description: "Add a dependency.",
+  },
+  {
+    icon: "➖",
+    name: "heavy_minus_sign",
+    insertValue: ":heavy_minus_sign:",
+    description: "Remove a dependency..",
+  },
+  {
+    icon: "🌐",
+    name: "globe_with_meridians",
+    insertValue: ":globe_with_meridians:",
+    description: "Internationalization and localization.",
+  },
+  {
+    icon: "🚚",
+    name: "truck",
+    insertValue: ":truck:",
+    description: "Move or rename resources (e.g.: files, paths, routes).",
+  },
+  {
+    icon: "📄",
+    name: "page_facing_up",
+    insertValue: ":page_facing_up:",
+    description: "Add or update license.",
+  },
+  {
+    icon: "💥",
+    name: "boom",
+    insertValue: ":boom:",
+    description: "Introduce breaking changes.",
+  },
+  {
+    icon: "🍱",
+    name: "bento",
+    insertValue: ":bento:",
+    description: "Improve accessibility.",
+  },
+  {
+    icon: "💡",
+    name: "bulb",
+    insertValue: ":bulb:",
+    description: "Add or update comments in source code.",
+  },
+  {
+    icon: "🙈",
+    name: "see_no_evil",
+    insertValue: ":see_no_evil:",
+    description: "Add or update a .gitignore file.",
+  },
+  {
+    icon: "🧑‍💻",
+    name: "technologist",
+    insertValue: ":technologist:",
+    description: "Improve developer experience.",
+  },
+  {
+    icon: "🦺",
+    name: "safety_vest",
+    insertValue: ":safety_vest:",
+    description: "Add or update code related to validation.",
+  },
+];
