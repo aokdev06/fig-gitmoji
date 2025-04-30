@@ -37,7 +37,7 @@ const iosGetDevicesSimulatorGenerator = {
         name,
         icon: APPLE_ICON,
         description: `Boot ${name} (${udid})`,
-        insertValue: `\u0015print 'Booting device ${name}' && xcrun simctl boot ${udid}`,
+        insertValue: `\u0015print 'Booting device ${name}' && open -a Simulator && xcrun simctl boot ${udid}`,
       }));
   },
 };
@@ -53,7 +53,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "ios",
           icon: APPLE_ICON,
-          description: ".",
+          description: "Run IOS Simulator",
           args: {
             name: "device name",
             isOptional: false,
@@ -62,7 +62,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "android",
-          description: ".",
+          description: "Run Android Emulator",
           icon: ANDROID_ICON,
           args: {
             name: "device name",

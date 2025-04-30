@@ -1,22 +1,5 @@
 const { execSync } = require("child_process");
 
-const getAvds = () => {
-  try {
-    const output = execSync("emulator -list-avds", { encoding: "utf-8" });
-
-    return output
-      .split("\n")
-      .filter((name) => name.trim() !== "")
-      .map((name) => ({
-        name: name.trim(),
-        description: "Android Virtual Device",
-      }));
-  } catch (error) {
-    console.error("Failed to fetch AVDs:", error);
-    return [];
-  }
-};
-
 const androidGetDevicesGenerator = {
   script: ["emulator", "-list-avds"],
   postProcess: (scriptOutput: string) => {
