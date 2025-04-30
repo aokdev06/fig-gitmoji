@@ -1,1 +1,1 @@
-var e=["cm","commit","git","gitmoji","gm"],diffVersionedCompletions=[];export{e as default,diffVersionedCompletions};
+var e=["cm","commit","emulator","git","gitmoji","gm","simulator"],diffVersionedCompletions=[];export{e as default,diffVersionedCompletions};
