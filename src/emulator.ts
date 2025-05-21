@@ -31,6 +31,15 @@ const completionSpec: Fig.Spec = {
         generators: androidGetDevicesGenerator,
       },
     },
+    {
+      name: "-wipe-data",
+      description: "reset the user data image (copy it from initdata)",
+      args: {
+        name: "device name",
+        isOptional: false,
+        generators: androidGetDevicesGenerator,
+      },
+    },
   ],
 };
 
