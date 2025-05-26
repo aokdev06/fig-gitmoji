@@ -24,26 +24,30 @@ const androidGetDevicesGenerator = (script: string = "") => {
   };
 };
 
+interface IOSDeviceData {
+  name: string;
+  udid: string;
+  iosVersion: string;
+}
+
 const iosGetDevicesSimulatorGenerator = (
-  customScript: (name: string, udid: string) => string
+  customScript: (name: string, udid: string, iosVersion: string) => string
 ) => {
   return {
-    script: ["xcrun", "simctl", "list", "--json", "devices", "available"],
+    script: [
+      "bash",
+      "-c",
+      `xcrun simctl list --json devices available | jq -c '[.devices | to_entries[] | select(.key | test("iOS")) | .key as $runtime | .value[] | select(.isAvailable) | {name, udid, iosVersion: ($runtime | sub(".*iOS-"; "") | gsub("-"; "."))}]'`,
+    ],
     postProcess: (scriptOutput: string) => {
-      const devices = JSON.parse(scriptOutput).devices;
+      const devices = JSON.parse(scriptOutput) as IOSDeviceData[];
 
-      return Object.entries(devices)
-        .map(([_, data]) => data)
-        .reduce<Array<any>>(
-          (a: Array<any>, b: Array<any>): Array<any> => [...a, ...b],
-          []
-        )
-        .map(({ name, udid }: any) => ({
-          name,
-          icon: APPLE_ICON,
-          description: `Boot ${name} (${udid})`,
-          insertValue: customScript(name, udid), //`\u0015print 'Booting device ${name}' && open -a Simulator && xcrun simctl boot ${udid}`,
-        }));
+      return devices.map(({ name, udid, iosVersion }: any) => ({
+        name: `${name} (${iosVersion})`,
+        icon: APPLE_ICON,
+        description: `Boot ${name} (${udid})`,
+        insertValue: customScript(name, udid, iosVersion), //`\u0015print 'Booting device ${name}' && open -a Simulator && xcrun simctl boot ${udid}`,
+      }));
     },
   };
 };
@@ -64,8 +68,8 @@ const completionSpec: Fig.Spec = {
             name: "device name",
             isOptional: false,
             generators: iosGetDevicesSimulatorGenerator(
-              (name, udid) =>
-                `\u0015print 'Booting device ${name}' && open -a Simulator && xcrun simctl boot ${udid}`
+              (name, udid, iosVersion) =>
+                `\u0015print 'Booting device ${name}' && open -a Simulator && xcrun simctl boot ${udid} (${iosVersion})`
             ),
           },
         },
