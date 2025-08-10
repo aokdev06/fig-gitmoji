@@ -69,7 +69,7 @@ const completionSpec: Fig.Spec = {
             isOptional: false,
             generators: iosGetDevicesSimulatorGenerator(
               (name, udid, iosVersion) =>
-                `\u0015print 'Booting device ${name}' && open -a Simulator && xcrun simctl boot ${udid} (${iosVersion})`
+                `\u0015print 'Booting device ${name} (${iosVersion})' && open -a Simulator && xcrun simctl boot ${udid}`
             ),
           },
         },
